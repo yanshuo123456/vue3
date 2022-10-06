@@ -1,36 +1,32 @@
 <script setup>
-import { ref, reactive } from 'vue'
+import { ref, reactive, toRefs } from 'vue'
 
 defineProps({
   msg: String
 })
 
+// ref 使数据可以响应式
 const count = ref(0)
+
+// reactive 定义引用类型的数据 例：obj
+const obj = reactive({
+  name: '张三', age: 18
+})
+function nameChange() {
+  obj.name = '李四';
+}
+// toRefs：解构赋值
+let {name} = toRefs(obj)
+
 </script>
 
 <template>
-  <h1>{{ msg }}</h1>
-
+  <button @click="nameChange()">{{ msg }} -- 我叫 -- {{ obj.name }}</button>
+  <button @click="nameChange()">{{ msg }} -- 我叫 -- {{ name }}</button>
   <div class="card">
     <button type="button" @click="count++">count is {{ count }}</button>
-    <p>
-      Edit
-      <code>components/HelloWorld.vue</code> to test HMR
-    </p>
   </div>
 
-  <p>
-    Check out
-    <a href="https://vuejs.org/guide/quick-start.html#local" target="_blank"
-      >create-vue</a
-    >, the official Vue + Vite starter
-  </p>
-  <p>
-    Install
-    <a href="https://github.com/johnsoncodehk/volar" target="_blank">Volar</a>
-    in your IDE for a better DX
-  </p>
-  <p class="read-the-docs">Click on the Vite and Vue logos to learn more</p>
 </template>
 
 <style scoped>
