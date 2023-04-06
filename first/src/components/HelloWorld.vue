@@ -13,7 +13,7 @@ const obj = reactive({
   name: '张三', age: 18
 })
 function nameChange() {
-  obj.name = '李四3';
+  obj.name = '李四34';
 }
 // toRefs：解构赋值
 let {name} = toRefs(obj)
